@@ -2,8 +2,7 @@ const Login = () => import('./views/common/Login.vue')
 const Home = () => import('./views/common/Home.vue');
 
 
-const CommentList = () => import('./views/comment/CommentsList.vue')
-const CommentDetail = () => import('./views/comment/CommentDetail.vue')
+
 
 const ProjectsList = () => import('./views/videos/ProjectsList.vue')
 const UploadPicture = () => import('./views/pictures/Photo.vue')
@@ -31,7 +30,7 @@ let routes = [
     children: [
       {path: '/uploadPicture', component: UploadPicture, name: '图片', hidden: false,},
       {path: '/picturesList', component: PicturesList, name: 'gif', hidden: false,},
-      {path: '/commentsDetail/project_id=:project_id', component: CommentDetail, name: '视频', hidden: false,},
+      {path: '/commentsDetail/project_id=:project_id', component: PicturesList, name: '视频', hidden: false,},
 
     ]
 

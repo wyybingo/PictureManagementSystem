@@ -13,6 +13,8 @@ import VueRouter from 'vue-router'
 import store from './vuex/store'    //暂时不用
 import Vuex from 'vuex'
 import routes from './routes'
+import VuePreview from 'vue-preview';
+
 
 
 // Vue.config.productionTip = false   # 先注释掉
@@ -20,6 +22,8 @@ import routes from './routes'
 Vue.use(ElementUI);     // 这个需要在dist/static/index.html中引入什么内容
 Vue.use(VueRouter);
 Vue.use(Vuex);
+Vue.use(VuePreview)
+
 
 import preview from 'vue-preview'
 

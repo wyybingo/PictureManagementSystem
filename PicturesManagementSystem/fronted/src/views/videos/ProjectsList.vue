@@ -8,26 +8,54 @@
    :rules="rule"
    class="regform"
    label-width="0">
-   <h3 class="login-text">手机注册</h3>
+   <h3 class="login-text">邮箱注册</h3>
+
+
     <el-form-item prop="tel">
     <el-input
      type="text"
      v-model.number="ReginForm.tel"
-     placeholder="手机号码">
+     placeholder="请输入用户名">
     </el-input>
    </el-form-item>
+
+
+    <el-form-item prop="tel">
+    <el-input
+     type="text"
+     v-model.number="ReginForm.tel"
+     placeholder="请输入注册邮箱">
+    </el-input>
+   </el-form-item>
+
+
+    <el-form-item prop="tel">
+    <el-input
+     type="text"
+     v-model.number="ReginForm.tel"
+     placeholder="请输入密码">
+    </el-input>
+   </el-form-item>
+
+
+
+
+
     <el-form-item prop="password">
     <el-input
      type="password"
      v-model="ReginForm.password"
-     placeholder="密码">
+     placeholder="请输入确认密码">
     </el-input>
    </el-form-item>
-        <div>
-       <input class="auth_input" type="text" v-model="verification"  placeholder="输入验证码" />
-  <span v-show="sendAuthCode" class="auth_text auth_text_blue" @click="getAuthCode">获取验证码</span>
-  <span v-show="!sendAuthCode" class="auth_text"> <span class="auth_text_blue">{{auth_time}} </span> 秒之后重新发送验证码</span>
-  </div>
+<!--        <div>-->
+<!--       <input class="auth_input" type="text" v-model="verification"  placeholder="输入验证码" />-->
+<!--                 <input class="auth_input" type="text" v-model="verification"  placeholder="输入验证码" />-->
+
+
+<!--  <span v-show="sendAuthCode" class="auth_text auth_text_blue" @click="getAuthCode">获取验证码</span>-->
+<!--  <span v-show="!sendAuthCode" class="auth_text"> <span class="auth_text_blue">{{auth_time}} </span> 秒之后重新发送验证码</span>-->
+<!--  </div>-->
    <el-form-item >
     <el-button
      type="success"
@@ -51,14 +79,14 @@ export default {
  data () {
   let confirmpasswordCheck = (rule, value, callback) => {
    if (value === '') {
-    return callback(new Error('密码是必须的'))
+    return callback(new Error('用户名是必须的'))
    } else {
     return callback()
    }
   }
   let telCheck = (rule, value, callback) => {
    if (value === '') {
-    return callback(new Error('电话号码是必须的'))
+    return callback(new Error('注册邮箱是必须的'))
    } else if (!Number.isInteger(value)) {
     return callback(new Error('电话号码必须是数字'))
    } else if (value.toString().length !== 11) {

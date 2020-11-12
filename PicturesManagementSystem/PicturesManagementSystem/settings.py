@@ -42,7 +42,13 @@ INSTALLED_APPS = [
     'common_api',
     'corsheaders',
     'gifs',
-    'videos'
+    'videos',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+
 ]
 
 MIDDLEWARE = [

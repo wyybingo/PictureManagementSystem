@@ -66,7 +66,37 @@
           return {
               input: "",
               fileList: [],
-              imgList: [],
+              imgList: [ {src: 'https://placekitten.com/600/400',
+
+                    w: 600,
+
+                    h: 400                    },
+                {
+
+                    src: 'https://placekitten.com/1200/900',
+
+                    w: 1200,
+
+                    h: 900                    }
+],
+              slide1: [
+                  {
+                    src: 'https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_b.jpg',
+                    msrc: 'https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg',
+                    alt: 'picture1',
+                    title: 'Image Caption 1',
+                    w: 600,
+                    h: 900
+                  },
+                  {
+                    src: 'https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_b.jpg',
+                    msrc: 'https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg',
+                    alt: 'picture2',
+                    title: 'Image Caption 2',
+                    w: 1200,
+                    h: 900
+                  }
+              ]
           }
       },
       methods: {
@@ -162,6 +192,7 @@
           },
 
 
+
           getImage() {
               this.listLoading = true;
               let self = this;
@@ -177,15 +208,42 @@
                   if (code === '999999') {
                     // self.total = data.total;
                       self.imgList = data.data;
+                    console.log("编码前")
+
+                    console.log(self.imgList)
+
                       self.imgList.forEach(function (img) {// 因为要上传多个文件，所以需要遍历
                           console.log(img["title"])
-                          img.src = img["original"];
+                          // img.src ="file:///Users/wangyuanyuan/Documents/wyy/01_code/PicturesManagementSystem/"+img["original"];
+                          // img.msrc ="file:///Users/wangyuanyuan/Documents/wyy/01_code/PicturesManagementSystem/"+img["original"];
+                        //  图片绝对地址转化为base64
+                        let file="/Users/wangyuanyuan/Documents/wyy/01_code/PicturesManagementSystem/uploads/IMG_2256.jpeg";
+                        // console.log('URL: ', file)
+                        // console.log(typeof file)
+                        //
+                        // var canvas = document.createElement("canvas");
+                        // canvas.width = file.width;
+                        // canvas.height = file.height;
+                        // var ctx = canvas.getContext("2d");
+                        // ctx.drawImage(file , 0, 0, canvas.width, canvas.height);
+                        // var ext = file.src.substring(file.src.lastIndexOf(".")+1).toLowerCase();
+                        // console.log('EXT: ', ext)
+                        // var pic_base64 = canvas.toDataURL("image/"+ext);
+                        // console.log('pic_base64: ', pic_base64)
+                        // console.log('base64是: ', pic_base64)
+                          img.src = 'data:image/png;base64,' +img["original"];
+                          img.msrc = 'data:image/png;base64,' +img["original"];
                           img.alt = "picture1";
                           img.title = img["title"];
                           img.w = 1920;//这是大图的宽
                           img.h = 1080;
                       });
+                    console.log("编码后")
+
                       console.log(this.imgList)
+                                        console.log("编码后1")
+
+                      console.log(this.slide1)
                     }
                   else {
                       self.$message.error({

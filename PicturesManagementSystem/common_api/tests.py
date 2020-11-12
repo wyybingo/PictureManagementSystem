@@ -1,9 +1,7 @@
-from django.test import TestCase
-
-# Create your tests here.
-a="1"
-print(type(a))
+def algL():
+    w,h = 10,9
+    return [w,h]
+a = algL()
 print(a)
-uid_id = int(a)
-print(type(uid_id))
-print(uid_id)
+# print(assert type(a) == tuple )
+print(a[0],a[1])

@@ -109,8 +109,8 @@ def change_style(image_url,style_type):
     else:
         print(base64_img["error_msg"])
 
-pic_url="/Users/wangyuanyuan/Documents/wyy/01_code/PicturesManagementSystem/pictures/WechatIMG20.png"
-change_style(pic_url,11)
+pic_url="/Users/wangyuanyuan/Documents/wyy/01_code/PicturesManagementSystem/uploads/UNADJUSTEDNONRAW_thumb_1676.jpg"
+change_style(pic_url,3)
 
 
 
