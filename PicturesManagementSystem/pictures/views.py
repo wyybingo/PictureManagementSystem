@@ -26,15 +26,29 @@ class upload_img(APIView):
         img_files = request.FILES.getlist("file")
         repeat_img = []
         for img in img_files:
-            # 1.获取图片类型，宽度，高度，尺寸，拍摄时间
-            img_type, img_width, img_height, img_size, img_time = get_image_info.get_picture_info(img)
-            print("图片基本信息为：", img_type, img_width, img_height, img_size, img_time)
+            # upload_dir = os.path.join(self.cur_path, "uploads")
+            # file_path = os.path.join(upload_dir, img.name)
+            # a=[img.file, img.field_name, img.name, img.content_type,
+            #       img.size, img.charset, img.content_type_extra]
+            # print(a)
+            # 直接获取图片的类型，大小，名称
+            img_type= img.content_type
+            img_size=img.size
+            img_name=img.name
+            print("可以直接获取的图片基本信息为：", img_name,img_type,img_size)
+
+
+            # 1.获取宽度，高度，拍摄时间
+            img_width, img_height, img_time = get_image_info.get_picture_info(img)
+            print("方法1获取图片基本信息为：",  img_width, img_height,  img_time)
+            # print(img)
+            # img.ContentLength,img.ContentType,img.FileName,img.InputStream
+            # ,img.SaveAs("/Users/wangyuanyuan/Documents/wyy/01_code/PictureManagementSystem/PicturesManagementSystem/pictures"))
+
 
             # 2.获取图片自动分类,可以直接获取id
             auto_tag_id = get_auto_tag.detection(img)
             print("图片自动分类为：", auto_tag_id)
-
-
 
             # 3. 获取图片地标分类，只能获取地标文字
             location_tag = get_location_tag.get_location(img)
@@ -42,8 +56,10 @@ class upload_img(APIView):
             location_id = Location_Tag.objects.filter(location_tag_name=location_tag)
             print("地标分类ID为：", location_id)
 
+            # 如果地标存在，则直接获取地标id
             if location_id.exists():
                 location_tag_id = location_id
+            # 如果地标不存在，则直接获取地标id
             else:
                 loc = Location_Tag(tag_name=img)
                 loc.save()

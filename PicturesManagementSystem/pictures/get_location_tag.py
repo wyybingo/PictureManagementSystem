@@ -47,7 +47,8 @@ def get_location(a):
     request_url = request_url + "?access_token=" + access_token
     headers = {'content-type': 'application/x-www-form-urlencoded'}
     response = requests.post(request_url, data=params, headers=headers)
-    # print(response.json())
+    print("地标tag为：",response.json()["result"]["landmark"])
+
 
     if len(response.json()["result"]["landmark"])==0:
         return  "其他"

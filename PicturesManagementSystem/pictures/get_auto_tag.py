@@ -1,5 +1,4 @@
 import base64
-
 import cv2
 import imutils
 import numpy as np
@@ -38,16 +37,18 @@ def process(frame, detections, w, h):
     cv2.imwrite("./cv2img.jpg", frame)
 
 
-def detection(img_path):
+def detection(img):
     prototxt_path = "mobilenet_/MobileNetSSD_deploy.prototxt"
     model_path = "mobilenet_/MobileNetSSD_deploy.caffemodel"
 
     # vs = cv2.VideoCapture(0)
     # _,frame = vs.read()
     # vs.release()
-    # 获取图片用到
-    #
-    img = cv2.imread(img_path)
+    # 获取图片用到--原有的
+    # img = cv2.imdecode(img,flags=None)
+    img = cv2.imread(img)
+    print("图片类型为：",type(img))
+    print("图片为：",img)
     frame = img
     label = ""
     frame = imutils.resize(frame, width=800)
@@ -66,25 +67,26 @@ def detection(img_path):
     max_cls = detections[0, 1]
     process(frame, detections, w, h)  # 算法可视化预留函数
     # image1=imageToStr(image) #图片字节预留函数
+    print("最终分类为：",int(max_cls))
     return int(max_cls)
 
-# img_path = "/Users/wangyuanyuan/Documents/wyy/01_code/PicturesManagementSystem/pictures/test_img/WechatIMG49.jpeg"
-# a=detection(img_path)
-# print(a)
+img= "/Users/wangyuanyuan/Documents/wyy/01_code/PictureManagementSystem/PicturesManagementSystem/uploads/IMG_2256.jpeg"
+a=detection(img)
+print(a)
 
 
 
 
 
 
-#
+
 # prototxt_path = "mobilenet_/MobileNetSSD_deploy.prototxt"
 # model_path = "mobilenet_/MobileNetSSD_deploy.caffemodel"
 # CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
 #            "bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
 #            "dog", "horse", "motorbike", "person", "pottedplant", "sheep",
 #            "sofa", "train", "tvmonitor"]
-# img_path = "/Users/wangyuanyuan/Documents/wyy/01_code/PicturesManagementSystem/pictures/test_img/WechatIMG49.jpeg"
+# img_path = "/Users/wangyuanyuan/Documents/wyy/01_code/PictureManagementSystem/PicturesManagementSystem/uploads/IMG_2256.jpeg"
 # img = cv2.imread(img_path)
 # COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 # net = cv2.dnn.readNetFromCaffe(prototxt_path, model_path)
